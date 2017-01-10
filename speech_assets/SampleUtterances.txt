@@ -1,0 +1,9 @@
+GetEtherPriceIntent get the ether price for me
+GetEtherPriceIntent how much is ether worth
+GetEtherPriceIntent tell me how much ether is worth
+GetEtherPriceIntent what is the price of ether
+GetEtherPriceIntent give me the price of ether
+GetEtherPriceIntent give me the price of ether in dollars
+GetEtherPriceIntent give me the price of ether in bitcoin
+GetEtherPriceIntent open ether
+GetEtherPriceIntent get ether price
