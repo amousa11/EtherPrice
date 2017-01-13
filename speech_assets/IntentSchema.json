@@ -4,6 +4,9 @@
       "intent": "GetEtherPriceIntent"
     },
     {
+      "intent": "LaunchRequest"
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     },
     {

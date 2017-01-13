@@ -7,3 +7,7 @@ GetEtherPriceIntent give me the price of ether in dollars
 GetEtherPriceIntent give me the price of ether in bitcoin
 GetEtherPriceIntent open ether
 GetEtherPriceIntent get ether price
+LaunchRequest open ether price
+AMAZON.CancelIntent close ether price
+AMAZON.StopIntent stop ether price
+AMAZON.HelpIntent ether price help

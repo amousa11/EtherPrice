@@ -1,5 +1,5 @@
-from flask import Flask
-from flask_ask import Ask, statement
+from flask import Flask, render_template
+from flask_ask import Ask, session, question, statement
 import json, requests
 import logging
 
@@ -11,40 +11,37 @@ logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 def get_ether_price():
     url = 'https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD'
     ether_price = json.loads(requests.get(url=url).text)
-    rtn = "1 Ether currently costs " + str(ether_price["BTC"]) + " bitcoin and " + str(ether_price["USD"]) + " <say-as interpret-as='spell-out'>US</say-as> dollars"
+    dollars, cents = ether_price["USD"] // 1, (100 * ether_price["USD"]) % 100
+    rtn = "1 Ether currently costs " + str(ether_price["BTC"]) + " bitcoin and " + str(dollars) + " <say-as interpret-as='spell-out'>US</say-as> dollars and " + str(cents) + " cents"
     return statement(rtn)
 
 
-@ask.intent('GetEtherPrice')
-def get_price():
-    get_ether_price()
-
-
-@ask.intent('LaunchRequest')
+@ask.launch
 def launch_request():
-    get_ether_price()
+    speechOutput = "I can tell you the price of ether in bitcoin and US dollars"
+    reprompt = "How can I help you?"
+    return statement(speechOutput)
 
 
 @ask.intent('AMAZON.HelpIntent')
 def help():
     speechOutput = "I can tell you the price of ether in bitcoin and US dollars"
     reprompt = "How can I help you?"
-    return statement(speechOutput).reprompt(reprompt)
-
-
-@ask.intent('AMAZON.CancelIntent')
-def cancel():
-    return statement("Goodbye!")
+    return statement(speechOutput)
 
 
 @ask.intent('AMAZON.StopIntent')
 def stop():
-    cancel()
+    return statement("Bye!")
 
 
-@ask.intent('SessionEndedRequest')
-def end():
-    cancel()
+@ask.intent('AMAZON.CancelIntent')
+def cancel():
+    return statement("Bye!")
+
+@ask.session_ended
+def session_ended():
+    return statement("")
 
 
 if __name__ == '__main__':
