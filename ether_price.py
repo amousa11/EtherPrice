@@ -18,16 +18,16 @@ def get_ether_price():
 
 @ask.launch
 def launch_request():
-    speechOutput = "I can tell you the price of ether in bitcoin and US dollars"
-    reprompt = "How can I help you?"
-    return statement(speechOutput)
+    speechOutput = "I can tell you the price of ether in bitcoin and US dollars."
+    reprompt = " How can I help you?"
+    return question(speechOutput + reprompt)
 
 
 @ask.intent('AMAZON.HelpIntent')
 def help():
-    speechOutput = "I can tell you the price of ether in bitcoin and US dollars"
-    reprompt = "How can I help you?"
-    return statement(speechOutput)
+    speechOutput = "I can tell you the price of ether in bitcoin and US dollars."
+    reprompt = " How can I help you?"
+    return question(speechOutput + reprompt)
 
 
 @ask.intent('AMAZON.StopIntent')
